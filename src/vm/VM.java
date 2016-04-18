@@ -26,7 +26,12 @@ public class VM {
             int opcode = code[ip]; // Fetch opcode from code memory
             ip++;
 
+            // Print out the name and operand of the current opcode
             printInstruction(opcode);
+
+            // Declare variables here, since the scope of a switch case is kinda weird
+            int a;
+            int b;
 
             // Decode
             switch (opcode) {
@@ -43,12 +48,40 @@ public class VM {
                     sp--;
                     System.out.println(value); // Print TOS
                     break;
-                case IADD:
-                    int b = stack[sp];
-                    sp--;
-                    int a = stack[sp];
-                    stack[sp] = a+b;
+                case LOAD:
+                    // Fetch memory adress from TOS
+                    // Get value stored in memory
+                    // Add the value onto the stack
 
+                case ISUB:
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    stack[sp] = a-b;
+                case IADD:
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    stack[sp] = a+b;
+                    break;
+                case IMUL:
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    stack[sp] = a*b;
+                case POP:
+                    sp--;
+                case LT:
+                    // Compare 2nd (a) item on stack to 1st (b)
+                    // If a < b, push 1
+                    // else push 0
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    if(a<b){
+                        stack[sp] = 1;
+                    }
+                    else{ stack[sp] = 0;}
                     break;
                 case HALT:
                     return;

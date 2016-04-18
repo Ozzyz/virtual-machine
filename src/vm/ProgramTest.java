@@ -6,6 +6,7 @@ public class ProgramTest {
             ICONST, 1,
             ICONST, 2,
             IADD,
+            PRINT,
             HALT
     };
 
