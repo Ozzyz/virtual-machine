@@ -49,9 +49,16 @@ public class VM {
                     System.out.println(value); // Print TOS
                     break;
                 case LOAD:
-                    // Fetch memory adress from TOS
+                    // Relative load
+                    // Loads from a stack offset
+                case GLOAD:
+                    // Fetch memory address from TOS
                     // Get value stored in memory
                     // Add the value onto the stack
+                    a = code[ip];  // Memory address
+                    ip++;
+                    sp++;
+                    stack[sp] = a;
 
                 case ISUB:
                     b = stack[sp];
@@ -70,6 +77,7 @@ public class VM {
                     a = stack[sp];
                     stack[sp] = a*b;
                 case POP:
+                    // Get rid of top element of stack
                     sp--;
                 case LT:
                     // Compare 2nd (a) item on stack to 1st (b)
