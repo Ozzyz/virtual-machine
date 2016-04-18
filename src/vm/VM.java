@@ -59,12 +59,13 @@ public class VM {
                     ip++;
                     sp++;
                     stack[sp] = a;
-
+                    break;
                 case ISUB:
                     b = stack[sp];
                     sp--;
                     a = stack[sp];
                     stack[sp] = a-b;
+                    break;
                 case IADD:
                     b = stack[sp];
                     sp--;
@@ -76,9 +77,37 @@ public class VM {
                     sp--;
                     a = stack[sp];
                     stack[sp] = a*b;
+                    break;
                 case POP:
                     // Get rid of top element of stack
                     sp--;
+                    break;
+                case GTE:
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    if(a>=b){
+                        stack[sp] = 1;
+                    }
+                    else{ stack[sp] = 0;}
+                    break;
+                case EQ:
+                    b = stack[sp];
+                    sp--;
+                    a = stack[sp];
+                    if(a==b){
+                        stack[sp]=1;
+                    }
+                    else{stack[sp] = 0;}
+                    break;
+                case BR:
+                    //Get operand from code memory
+                    a = code[ip];
+                    // Set instruction pointer to the given operand
+                    ip = a;
+                    break;
+                case BNE:
+                    break;
                 case LT:
                     // Compare 2nd (a) item on stack to 1st (b)
                     // If a < b, push 1

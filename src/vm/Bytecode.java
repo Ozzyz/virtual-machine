@@ -43,7 +43,7 @@ public class Bytecode {
             new Instruction("GTE"),
             new Instruction("EQ"),
             new Instruction("BR", 1),
-            new Instruction("BNE"),
+            new Instruction("BNE",1),
             new Instruction("ICONST",1),
             new Instruction("LOAD", 1),
             new Instruction("GLOAD",1),
